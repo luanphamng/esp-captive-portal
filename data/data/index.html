@@ -1,0 +1,2685 @@
+<!DOCTYPE html>
+<html>
+<title>Ensven Control Panel</title>
+<link rel="stylesheet" href="notifications.css">
+<script src="notifications.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="./assets/css/flatpickr.css">
+<link rel="stylesheet" href="./assets/css/style.css">
+<meta charset="utf-8">
+<style>
+    /* W3PRO.CSS 4.15 December 2020 by Jan Egil and Borge Refsnes */
+    
+    html {
+        box-sizing: border-box
+    }
+    
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit
+    }
+    /* Extract from normalize.css by Nicolas Gallagher and Jonathan Neal git.io/normalize */
+    
+    html {
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%
+    }
+    
+    body {
+        margin: 0
+    }
+    
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    main,
+    menu,
+    nav,
+    section {
+        display: block
+    }
+    
+    summary {
+        display: list-item
+    }
+    
+    audio,
+    canvas,
+    progress,
+    video {
+        display: inline-block
+    }
+    
+    progress {
+        vertical-align: baseline
+    }
+    
+    audio:not([controls]) {
+        display: none;
+        height: 0
+    }
+    
+    [hidden],
+    template {
+        display: none
+    }
+    
+    a {
+        background-color: transparent
+    }
+    
+    a:active,
+    a:hover {
+        outline-width: 0
+    }
+    
+    abbr[title] {
+        border-bottom: none;
+        text-decoration: underline;
+        text-decoration: underline dotted
+    }
+    
+    b,
+    strong {
+        font-weight: bolder
+    }
+    
+    dfn {
+        font-style: italic
+    }
+    
+    mark {
+        background: #ff0;
+        color: #000
+    }
+    
+    small {
+        font-size: 80%
+    }
+    
+    sub,
+    sup {
+        font-size: 75%;
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline
+    }
+    
+    sub {
+        bottom: -0.25em
+    }
+    
+    sup {
+        top: -0.5em
+    }
+    
+    figure {
+        margin: 1em 40px
+    }
+    
+    img {
+        border-style: none
+    }
+    
+    code,
+    kbd,
+    pre,
+    samp {
+        font-family: monospace, monospace;
+        font-size: 1em
+    }
+    
+    hr {
+        box-sizing: content-box;
+        height: 0;
+        overflow: visible
+    }
+    
+    button,
+    input,
+    select,
+    textarea,
+    optgroup {
+        font: inherit;
+        margin: 0
+    }
+    
+    optgroup {
+        font-weight: bold
+    }
+    
+    button,
+    input {
+        overflow: visible
+    }
+    
+    button,
+    select {
+        text-transform: none
+    }
+    
+    button,
+    [type=button],
+    [type=reset],
+    [type=submit] {
+        -webkit-appearance: button
+    }
+    
+    button::-moz-focus-inner,
+    [type=button]::-moz-focus-inner,
+    [type=reset]::-moz-focus-inner,
+    [type=submit]::-moz-focus-inner {
+        border-style: none;
+        padding: 0
+    }
+    
+    button:-moz-focusring,
+    [type=button]:-moz-focusring,
+    [type=reset]:-moz-focusring,
+    [type=submit]:-moz-focusring {
+        outline: 1px dotted ButtonText
+    }
+    
+    fieldset {
+        border: 1px solid #c0c0c0;
+        margin: 0 2px;
+        padding: .35em .625em .75em
+    }
+    
+    legend {
+        color: inherit;
+        display: table;
+        max-width: 100%;
+        padding: 0;
+        white-space: normal
+    }
+    
+    textarea {
+        overflow: auto
+    }
+    
+    [type=checkbox],
+    [type=radio] {
+        padding: 0
+    }
+    
+    [type=number]::-webkit-inner-spin-button,
+    [type=number]::-webkit-outer-spin-button {
+        height: auto
+    }
+    
+    [type=search] {
+        -webkit-appearance: textfield;
+        outline-offset: -2px
+    }
+    
+    [type=search]::-webkit-search-decoration {
+        -webkit-appearance: none
+    }
+    
+     ::-webkit-file-upload-button {
+        -webkit-appearance: button;
+        font: inherit
+    }
+    /* End extract */
+    
+    html,
+    body {
+        font-family: Verdana, sans-serif;
+        font-size: 15px;
+        line-height: 1.5
+    }
+    
+    html {
+        overflow-x: hidden
+    }
+    
+    h1 {
+        font-size: 36px
+    }
+    
+    h2 {
+        font-size: 30px
+    }
+    
+    h3 {
+        font-size: 24px
+    }
+    
+    h4 {
+        font-size: 20px
+    }
+    
+    h5 {
+        font-size: 18px
+    }
+    
+    h6 {
+        font-size: 16px
+    }
+    
+    .w3-serif {
+        font-family: serif
+    }
+    
+    .w3-sans-serif {
+        font-family: sans-serif
+    }
+    
+    .w3-cursive {
+        font-family: cursive
+    }
+    
+    .w3-monospace {
+        font-family: monospace
+    }
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Segoe UI", Arial, sans-serif;
+        font-weight: 400;
+        margin: 10px 0
+    }
+    
+    .w3-wide {
+        letter-spacing: 4px
+    }
+    
+    hr {
+        border: 0;
+        border-top: 1px solid #eee;
+        margin: 20px 0
+    }
+    
+    .w3-image {
+        max-width: 100%;
+        height: auto
+    }
+    
+    img {
+        vertical-align: middle
+    }
+    
+    a {
+        color: inherit
+    }
+    
+    .w3-table,
+    .w3-table-all {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        display: table
+    }
+    
+    .w3-table-all {
+        border: 1px solid #ccc
+    }
+    
+    .w3-bordered tr,
+    .w3-table-all tr {
+        border-bottom: 1px solid #ddd
+    }
+    
+    .w3-striped tbody tr:nth-child(even) {
+        background-color: #f1f1f1
+    }
+    
+    .w3-table-all tr:nth-child(odd) {
+        background-color: #fff
+    }
+    
+    .w3-table-all tr:nth-child(even) {
+        background-color: #f1f1f1
+    }
+    
+    .w3-hoverable tbody tr:hover,
+    .w3-ul.w3-hoverable li:hover {
+        background-color: #ccc
+    }
+    
+    .w3-centered tr th,
+    .w3-centered tr td {
+        text-align: center
+    }
+    
+    .w3-table td,
+    .w3-table th,
+    .w3-table-all td,
+    .w3-table-all th {
+        padding: 8px 8px;
+        display: table-cell;
+        text-align: left;
+        vertical-align: top
+    }
+    
+    .w3-table th:first-child,
+    .w3-table td:first-child,
+    .w3-table-all th:first-child,
+    .w3-table-all td:first-child {
+        padding-left: 16px
+    }
+    
+    .w3-btn,
+    .w3-button {
+        border: none;
+        display: inline-block;
+        padding: 8px 16px;
+        vertical-align: middle;
+        overflow: hidden;
+        text-decoration: none;
+        color: inherit;
+        background-color: inherit;
+        text-align: center;
+        cursor: pointer;
+        white-space: nowrap
+    }
+    
+    .w3-btn:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+    }
+    
+    .w3-btn,
+    .w3-button {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none
+    }
+    
+    .w3-disabled,
+    .w3-btn:disabled,
+    .w3-button:disabled {
+        cursor: not-allowed;
+        opacity: 0.3
+    }
+    
+    .w3-disabled *,
+     :disabled * {
+        pointer-events: none
+    }
+    
+    .w3-btn.w3-disabled:hover,
+    .w3-btn:disabled:hover {
+        box-shadow: none
+    }
+    
+    .w3-badge,
+    .w3-tag {
+        background-color: #000;
+        color: #fff;
+        display: inline-block;
+        padding-left: 8px;
+        padding-right: 8px;
+        text-align: center
+    }
+    
+    .w3-badge {
+        border-radius: 50%
+    }
+    
+    .w3-ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0
+    }
+    
+    .w3-ul li {
+        padding: 8px 16px;
+        border-bottom: 1px solid #ddd
+    }
+    
+    .w3-ul li:last-child {
+        border-bottom: none
+    }
+    
+    .w3-tooltip,
+    .w3-display-container {
+        position: relative
+    }
+    
+    .w3-tooltip .w3-text {
+        display: none
+    }
+    
+    .w3-tooltip:hover .w3-text {
+        display: inline-block
+    }
+    
+    .w3-ripple:active {
+        opacity: 0.5
+    }
+    
+    .w3-ripple {
+        transition: opacity 0s
+    }
+    
+    .w3-input {
+        padding: 8px;
+        display: block;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        width: 100%
+    }
+    
+    .w3-select {
+        padding: 9px 0;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #ccc
+    }
+    
+    .w3-dropdown-click,
+    .w3-dropdown-hover {
+        position: relative;
+        display: inline-block;
+        cursor: pointer
+    }
+    
+    .w3-dropdown-hover:hover .w3-dropdown-content {
+        display: block
+    }
+    
+    .w3-dropdown-hover:first-child,
+    .w3-dropdown-click:hover {
+        background-color: #ccc;
+        color: #000
+    }
+    
+    .w3-dropdown-hover:hover>.w3-button:first-child,
+    .w3-dropdown-click:hover>.w3-button:first-child {
+        background-color: #ccc;
+        color: #000
+    }
+    
+    .w3-dropdown-content {
+        cursor: auto;
+        color: #000;
+        background-color: #fff;
+        display: none;
+        position: absolute;
+        min-width: 160px;
+        margin: 0;
+        padding: 0;
+        z-index: 1
+    }
+    
+    .w3-check,
+    .w3-radio {
+        width: 24px;
+        height: 24px;
+        position: relative;
+        top: 6px
+    }
+    
+    .w3-sidebar {
+        height: 100%;
+        width: 200px;
+        background-color: #fff;
+        position: fixed !important;
+        z-index: 1;
+        overflow: auto
+    }
+    
+    .w3-bar-block .w3-dropdown-hover,
+    .w3-bar-block .w3-dropdown-click {
+        width: 100%
+    }
+    
+    .w3-bar-block .w3-dropdown-hover .w3-dropdown-content,
+    .w3-bar-block .w3-dropdown-click .w3-dropdown-content {
+        min-width: 100%
+    }
+    
+    .w3-bar-block .w3-dropdown-hover .w3-button,
+    .w3-bar-block .w3-dropdown-click .w3-button {
+        width: 100%;
+        text-align: left;
+        padding: 8px 16px
+    }
+    
+    .w3-main,
+    #main {
+        transition: margin-left .4s
+    }
+    
+    .w3-modal {
+        z-index: 3;
+        display: none;
+        padding-top: 100px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4)
+    }
+    
+    .w3-modal-content {
+        margin: auto;
+        background-color: #fff;
+        position: relative;
+        padding: 0;
+        outline: 0;
+        width: 600px
+    }
+    
+    .w3-bar {
+        width: 100%;
+        overflow: hidden
+    }
+    
+    .w3-center .w3-bar {
+        display: inline-block;
+        width: auto
+    }
+    
+    .w3-bar .w3-bar-item {
+        padding: 8px 16px;
+        float: left;
+        width: auto;
+        border: none;
+        display: block;
+        outline: 0
+    }
+    
+    .w3-bar .w3-dropdown-hover,
+    .w3-bar .w3-dropdown-click {
+        position: static;
+        float: left
+    }
+    
+    .w3-bar .w3-button {
+        white-space: normal
+    }
+    
+    .w3-bar-block .w3-bar-item {
+        width: 100%;
+        display: block;
+        padding: 8px 16px;
+        text-align: left;
+        border: none;
+        white-space: normal;
+        float: none;
+        outline: 0
+    }
+    
+    .w3-bar-block.w3-center .w3-bar-item {
+        text-align: center
+    }
+    
+    .w3-block {
+        display: block;
+        width: 100%
+    }
+    
+    .w3-responsive {
+        display: block;
+        overflow-x: auto
+    }
+    
+    .w3-container:after,
+    .w3-container:before,
+    .w3-panel:after,
+    .w3-panel:before,
+    .w3-row:after,
+    .w3-row:before,
+    .w3-row-padding:after,
+    .w3-row-padding:before,
+    .w3-cell-row:before,
+    .w3-cell-row:after,
+    .w3-clear:after,
+    .w3-clear:before,
+    .w3-bar:before,
+    .w3-bar:after {
+        content: "";
+        display: table;
+        clear: both
+    }
+    
+    .w3-col,
+    .w3-half,
+    .w3-third,
+    .w3-twothird,
+    .w3-threequarter,
+    .w3-quarter {
+        float: left;
+        width: 100%
+    }
+    
+    .w3-col.s1 {
+        width: 8.33333%
+    }
+    
+    .w3-col.s2 {
+        width: 16.66666%
+    }
+    
+    .w3-col.s3 {
+        width: 24.99999%
+    }
+    
+    .w3-col.s4 {
+        width: 33.33333%
+    }
+    
+    .w3-col.s5 {
+        width: 41.66666%
+    }
+    
+    .w3-col.s6 {
+        width: 49.99999%
+    }
+    
+    .w3-col.s7 {
+        width: 58.33333%
+    }
+    
+    .w3-col.s8 {
+        width: 66.66666%
+    }
+    
+    .w3-col.s9 {
+        width: 74.99999%
+    }
+    
+    .w3-col.s10 {
+        width: 83.33333%
+    }
+    
+    .w3-col.s11 {
+        width: 91.66666%
+    }
+    
+    .w3-col.s12 {
+        width: 99.99999%
+    }
+    
+    @media (min-width:601px) {
+        .w3-col.m1 {
+            width: 8.33333%
+        }
+        .w3-col.m2 {
+            width: 16.66666%
+        }
+        .w3-col.m3,
+        .w3-quarter {
+            width: 24.99999%
+        }
+        .w3-col.m4,
+        .w3-third {
+            width: 33.33333%
+        }
+        .w3-col.m5 {
+            width: 41.66666%
+        }
+        .w3-col.m6,
+        .w3-half {
+            width: 49.99999%
+        }
+        .w3-col.m7 {
+            width: 58.33333%
+        }
+        .w3-col.m8,
+        .w3-twothird {
+            width: 66.66666%
+        }
+        .w3-col.m9,
+        .w3-threequarter {
+            width: 74.99999%
+        }
+        .w3-col.m10 {
+            width: 83.33333%
+        }
+        .w3-col.m11 {
+            width: 91.66666%
+        }
+        .w3-col.m12 {
+            width: 99.99999%
+        }
+    }
+    
+    @media (min-width:993px) {
+        .w3-col.l1 {
+            width: 8.33333%
+        }
+        .w3-col.l2 {
+            width: 16.66666%
+        }
+        .w3-col.l3 {
+            width: 24.99999%
+        }
+        .w3-col.l4 {
+            width: 33.33333%
+        }
+        .w3-col.l5 {
+            width: 41.66666%
+        }
+        .w3-col.l6 {
+            width: 49.99999%
+        }
+        .w3-col.l7 {
+            width: 58.33333%
+        }
+        .w3-col.l8 {
+            width: 66.66666%
+        }
+        .w3-col.l9 {
+            width: 74.99999%
+        }
+        .w3-col.l10 {
+            width: 83.33333%
+        }
+        .w3-col.l11 {
+            width: 91.66666%
+        }
+        .w3-col.l12 {
+            width: 99.99999%
+        }
+    }
+    
+    .w3-rest {
+        overflow: hidden
+    }
+    
+    .w3-stretch {
+        margin-left: -16px;
+        margin-right: -16px
+    }
+    
+    .w3-content,
+    .w3-auto {
+        margin-left: auto;
+        margin-right: auto
+    }
+    
+    .w3-content {
+        max-width: 980px
+    }
+    
+    .w3-auto {
+        max-width: 1140px
+    }
+    
+    .w3-cell-row {
+        display: table;
+        width: 100%
+    }
+    
+    .w3-cell {
+        display: table-cell
+    }
+    
+    .w3-cell-top {
+        vertical-align: top
+    }
+    
+    .w3-cell-middle {
+        vertical-align: middle
+    }
+    
+    .w3-cell-bottom {
+        vertical-align: bottom
+    }
+    
+    .w3-hide {
+        display: none !important
+    }
+    
+    .w3-show-block,
+    .w3-show {
+        display: block !important
+    }
+    
+    .w3-show-inline-block {
+        display: inline-block !important
+    }
+    
+    @media (max-width:1205px) {
+        .w3-auto {
+            max-width: 95%
+        }
+    }
+    
+    @media (max-width:600px) {
+        .w3-modal-content {
+            margin: 0 10px;
+            width: auto !important
+        }
+        .w3-modal {
+            padding-top: 30px
+        }
+        .w3-dropdown-hover.w3-mobile .w3-dropdown-content,
+        .w3-dropdown-click.w3-mobile .w3-dropdown-content {
+            position: relative
+        }
+        .w3-hide-small {
+            display: none !important
+        }
+        .w3-mobile {
+            display: block;
+            width: 100% !important
+        }
+        .w3-bar-item.w3-mobile,
+        .w3-dropdown-hover.w3-mobile,
+        .w3-dropdown-click.w3-mobile {
+            text-align: center
+        }
+        .w3-dropdown-hover.w3-mobile,
+        .w3-dropdown-hover.w3-mobile .w3-btn,
+        .w3-dropdown-hover.w3-mobile .w3-button,
+        .w3-dropdown-click.w3-mobile,
+        .w3-dropdown-click.w3-mobile .w3-btn,
+        .w3-dropdown-click.w3-mobile .w3-button {
+            width: 100%
+        }
+    }
+    
+    @media (max-width:768px) {
+        .w3-modal-content {
+            width: 500px
+        }
+        .w3-modal {
+            padding-top: 50px
+        }
+    }
+    
+    @media (min-width:993px) {
+        .w3-modal-content {
+            width: 900px
+        }
+        .w3-hide-large {
+            display: none !important
+        }
+        .w3-sidebar.w3-collapse {
+            display: block !important
+        }
+    }
+    
+    @media (max-width:992px) and (min-width:601px) {
+        .w3-hide-medium {
+            display: none !important
+        }
+    }
+    
+    @media (max-width:992px) {
+        .w3-sidebar.w3-collapse {
+            display: none
+        }
+        .w3-main {
+            margin-left: 0 !important;
+            margin-right: 0 !important
+        }
+        .w3-auto {
+            max-width: 100%
+        }
+    }
+    
+    .w3-top,
+    .w3-bottom {
+        position: fixed;
+        width: 100%;
+        z-index: 1
+    }
+    
+    .w3-top {
+        top: 0
+    }
+    
+    .w3-bottom {
+        bottom: 0
+    }
+    
+    .w3-overlay {
+        position: fixed;
+        display: none;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 2
+    }
+    
+    .w3-display-topleft {
+        position: absolute;
+        left: 0;
+        top: 0
+    }
+    
+    .w3-display-topright {
+        position: absolute;
+        right: 0;
+        top: 0
+    }
+    
+    .w3-display-bottomleft {
+        position: absolute;
+        left: 0;
+        bottom: 0
+    }
+    
+    .w3-display-bottomright {
+        position: absolute;
+        right: 0;
+        bottom: 0
+    }
+    
+    .w3-display-middle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%)
+    }
+    
+    .w3-display-left {
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        transform: translate(0%, -50%);
+        -ms-transform: translate(-0%, -50%)
+    }
+    
+    .w3-display-right {
+        position: absolute;
+        top: 50%;
+        right: 0%;
+        transform: translate(0%, -50%);
+        -ms-transform: translate(0%, -50%)
+    }
+    
+    .w3-display-topmiddle {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%)
+    }
+    
+    .w3-display-bottommiddle {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%, 0%);
+        -ms-transform: translate(-50%, 0%)
+    }
+    
+    .w3-display-container:hover .w3-display-hover {
+        display: block
+    }
+    
+    .w3-display-container:hover span.w3-display-hover {
+        display: inline-block
+    }
+    
+    .w3-display-hover {
+        display: none
+    }
+    
+    .w3-display-position {
+        position: absolute
+    }
+    
+    .w3-circle {
+        border-radius: 50%
+    }
+    
+    .w3-round-small {
+        border-radius: 2px
+    }
+    
+    .w3-round,
+    .w3-round-medium {
+        border-radius: 4px
+    }
+    
+    .w3-round-large {
+        border-radius: 8px
+    }
+    
+    .w3-round-xlarge {
+        border-radius: 16px
+    }
+    
+    .w3-round-xxlarge {
+        border-radius: 32px
+    }
+    
+    .w3-row-padding,
+    .w3-row-padding>.w3-half,
+    .w3-row-padding>.w3-third,
+    .w3-row-padding>.w3-twothird,
+    .w3-row-padding>.w3-threequarter,
+    .w3-row-padding>.w3-quarter,
+    .w3-row-padding>.w3-col {
+        padding: 0 8px
+    }
+    
+    .w3-container,
+    .w3-panel {
+        padding: 0.01em 16px
+    }
+    
+    .w3-panel {
+        margin-top: 16px;
+        margin-bottom: 16px
+    }
+    
+    .w3-code,
+    .w3-codespan {
+        font-family: Consolas, "courier new";
+        font-size: 16px
+    }
+    
+    .w3-code {
+        width: auto;
+        background-color: #fff;
+        padding: 8px 12px;
+        border-left: 4px solid #4CAF50;
+        word-wrap: break-word
+    }
+    
+    .w3-codespan {
+        color: crimson;
+        background-color: #f1f1f1;
+        padding-left: 4px;
+        padding-right: 4px;
+        font-size: 110%
+    }
+    
+    .w3-card,
+    .w3-card-2 {
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
+    }
+    
+    .w3-card-4,
+    .w3-hover-shadow:hover {
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19)
+    }
+    
+    .w3-spin {
+        animation: w3-spin 2s infinite linear
+    }
+    
+    @keyframes w3-spin {
+        0% {
+            transform: rotate(0deg)
+        }
+        100% {
+            transform: rotate(359deg)
+        }
+    }
+    
+    .w3-animate-fading {
+        animation: fading 10s infinite
+    }
+    
+    @keyframes fading {
+        0% {
+            opacity: 0
+        }
+        50% {
+            opacity: 1
+        }
+        100% {
+            opacity: 0
+        }
+    }
+    
+    .w3-animate-opacity {
+        animation: opac 0.8s
+    }
+    
+    @keyframes opac {
+        from {
+            opacity: 0
+        }
+        to {
+            opacity: 1
+        }
+    }
+    
+    .w3-animate-top {
+        position: relative;
+        animation: animatetop 0.4s
+    }
+    
+    @keyframes animatetop {
+        from {
+            top: -300px;
+            opacity: 0
+        }
+        to {
+            top: 0;
+            opacity: 1
+        }
+    }
+    
+    .w3-animate-left {
+        position: relative;
+        animation: animateleft 0.4s
+    }
+    
+    @keyframes animateleft {
+        from {
+            left: -300px;
+            opacity: 0
+        }
+        to {
+            left: 0;
+            opacity: 1
+        }
+    }
+    
+    .w3-animate-right {
+        position: relative;
+        animation: animateright 0.4s
+    }
+    
+    @keyframes animateright {
+        from {
+            right: -300px;
+            opacity: 0
+        }
+        to {
+            right: 0;
+            opacity: 1
+        }
+    }
+    
+    .w3-animate-bottom {
+        position: relative;
+        animation: animatebottom 0.4s
+    }
+    
+    @keyframes animatebottom {
+        from {
+            bottom: -300px;
+            opacity: 0
+        }
+        to {
+            bottom: 0;
+            opacity: 1
+        }
+    }
+    
+    .w3-animate-zoom {
+        animation: animatezoom 0.6s
+    }
+    
+    @keyframes animatezoom {
+        from {
+            transform: scale(0)
+        }
+        to {
+            transform: scale(1)
+        }
+    }
+    
+    .w3-animate-input {
+        transition: width 0.4s ease-in-out
+    }
+    
+    .w3-animate-input:focus {
+        width: 100% !important
+    }
+    
+    .w3-opacity,
+    .w3-hover-opacity:hover {
+        opacity: 0.60
+    }
+    
+    .w3-opacity-off,
+    .w3-hover-opacity-off:hover {
+        opacity: 1
+    }
+    
+    .w3-opacity-max {
+        opacity: 0.25
+    }
+    
+    .w3-opacity-min {
+        opacity: 0.75
+    }
+    
+    .w3-greyscale-max,
+    .w3-grayscale-max,
+    .w3-hover-greyscale:hover,
+    .w3-hover-grayscale:hover {
+        filter: grayscale(100%)
+    }
+    
+    .w3-greyscale,
+    .w3-grayscale {
+        filter: grayscale(75%)
+    }
+    
+    .w3-greyscale-min,
+    .w3-grayscale-min {
+        filter: grayscale(50%)
+    }
+    
+    .w3-sepia {
+        filter: sepia(75%)
+    }
+    
+    .w3-sepia-max,
+    .w3-hover-sepia:hover {
+        filter: sepia(100%)
+    }
+    
+    .w3-sepia-min {
+        filter: sepia(50%)
+    }
+    
+    .w3-tiny {
+        font-size: 10px !important
+    }
+    
+    .w3-small {
+        font-size: 12px !important
+    }
+    
+    .w3-medium {
+        font-size: 15px !important
+    }
+    
+    .w3-large {
+        font-size: 18px !important
+    }
+    
+    .w3-xlarge {
+        font-size: 24px !important
+    }
+    
+    .w3-xxlarge {
+        font-size: 36px !important
+    }
+    
+    .w3-xxxlarge {
+        font-size: 48px !important
+    }
+    
+    .w3-jumbo {
+        font-size: 64px !important
+    }
+    
+    .w3-left-align {
+        text-align: left !important
+    }
+    
+    .w3-right-align {
+        text-align: right !important
+    }
+    
+    .w3-justify {
+        text-align: justify !important
+    }
+    
+    .w3-center {
+        text-align: center !important
+    }
+    
+    .w3-border-0 {
+        border: 0 !important
+    }
+    
+    .w3-border {
+        border: 1px solid #ccc !important
+    }
+    
+    .w3-border-top {
+        border-top: 1px solid #ccc !important
+    }
+    
+    .w3-border-bottom {
+        border-bottom: 1px solid #ccc !important
+    }
+    
+    .w3-border-left {
+        border-left: 1px solid #ccc !important
+    }
+    
+    .w3-border-right {
+        border-right: 1px solid #ccc !important
+    }
+    
+    .w3-topbar {
+        border-top: 6px solid #ccc !important
+    }
+    
+    .w3-bottombar {
+        border-bottom: 6px solid #ccc !important
+    }
+    
+    .w3-leftbar {
+        border-left: 6px solid #ccc !important
+    }
+    
+    .w3-rightbar {
+        border-right: 6px solid #ccc !important
+    }
+    
+    .w3-section,
+    .w3-code {
+        margin-top: 16px !important;
+        margin-bottom: 16px !important
+    }
+    
+    .w3-margin {
+        margin: 16px !important
+    }
+    
+    .w3-margin-top {
+        margin-top: 16px !important
+    }
+    
+    .w3-margin-bottom {
+        margin-bottom: 16px !important
+    }
+    
+    .w3-margin-left {
+        margin-left: 16px !important
+    }
+    
+    .w3-margin-right {
+        margin-right: 16px !important
+    }
+    
+    .w3-padding-small {
+        padding: 4px 8px !important
+    }
+    
+    .w3-padding {
+        padding: 8px 16px !important
+    }
+    
+    .w3-padding-large {
+        padding: 12px 24px !important
+    }
+    
+    .w3-padding-16 {
+        padding-top: 16px !important;
+        padding-bottom: 16px !important
+    }
+    
+    .w3-padding-24 {
+        padding-top: 24px !important;
+        padding-bottom: 24px !important
+    }
+    
+    .w3-padding-32 {
+        padding-top: 32px !important;
+        padding-bottom: 32px !important
+    }
+    
+    .w3-padding-48 {
+        padding-top: 48px !important;
+        padding-bottom: 48px !important
+    }
+    
+    .w3-padding-64 {
+        padding-top: 64px !important;
+        padding-bottom: 64px !important
+    }
+    
+    .w3-padding-top-64 {
+        padding-top: 64px !important
+    }
+    
+    .w3-padding-top-48 {
+        padding-top: 48px !important
+    }
+    
+    .w3-padding-top-32 {
+        padding-top: 32px !important
+    }
+    
+    .w3-padding-top-24 {
+        padding-top: 24px !important
+    }
+    
+    .w3-left {
+        float: left !important
+    }
+    
+    .w3-right {
+        float: right !important
+    }
+    
+    .w3-button:hover {
+        color: #000 !important;
+        background-color: #ccc !important
+    }
+    
+    .w3-transparent,
+    .w3-hover-none:hover {
+        background-color: transparent !important
+    }
+    
+    .w3-hover-none:hover {
+        box-shadow: none !important
+    }
+    
+    .w3-theme-dark {
+        color: #fff !important;
+        background-color: #000 !important
+    }
+    
+    .w3-theme {
+        color: #fff !important;
+        background-color: #000 !important
+    }
+    
+    .w3-text-theme {
+        color: #009688 !important
+    }
+    
+    .w3-border-theme {
+        border-color: #009688 !important
+    }
+    
+    .w3-hover-theme:hover {
+        color: #000 !important;
+        background-color: #fff !important;
+        border: darkred;
+        border-width: 2px;
+        border-style: solid;
+    }
+    
+    .w3-hover-theme {
+        color: #000 !important;
+        background-color: #fff !important;
+        height: 30px;
+    }
+    
+    .w3-hover-text-theme:hover {
+        color: #009688 !important
+    }
+    
+    .w3-hover-border-theme:hover {
+        border-color: #009688 !important
+    }
+    
+    .h100 {
+        height: 100%;
+    }
+    
+    .w100 {
+        width: 100%;
+    }
+    
+    .w90 {
+        width: 80%;
+    }
+    
+    .wa {
+        width: auto;
+    }
+    
+    .ma {
+        margin: auto;
+    }
+    
+    .mt-50 {
+        margin-top: 50px;
+    }
+    
+    .mt-150 {
+        margin-top: 150px;
+    }
+    
+    .top-btn {
+        background-color: white;
+        color: black;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin: auto;
+        margin-right: 15px;
+    }
+    
+    .mr-5 {
+        margin-right: 3px;
+    }
+    
+    .ml-5 {
+        margin-left: 3px;
+    }
+    
+    .mb-20 {
+        margin-bottom: 20px;
+    }
+    
+    .slidecontainer {
+        width: 100%;
+        height: 100%;
+        margin: auto;
+    }
+    
+    .slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 5px;
+        background: #d3d3d3;
+        outline: none;
+        margin-top: 10px;
+    }
+    
+    .slider:hover {
+        opacity: 1;
+    }
+    
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: #04AA6D;
+        cursor: pointer;
+    }
+    
+    .slider::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background: #04AA6D;
+        cursor: pointer;
+    }
+    
+    .back-button:hover {
+        background-color: #ccc;
+    }
+    
+    input {
+        background-color: black;
+        color: black;
+        border-color: white;
+    }
+    
+    .w3-modal-m {
+        background-color: #000;
+    }
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<body class="w3-theme-dark">
+
+    <div id="homeScreen" style="display: none;">
+        <header class="w3-top w3-bar w3-theme w3-center">
+            <div class="w3-cell-row wa">
+                <h2 class="w3-bar-item">Ensven Control Panel</h2>
+                <!-- <h4 class="w3-display-right top-btn">Device</h4> -->
+            </div>
+        </header>
+        <div class="w3-container w3-display-middle">
+            <div class="w3-cell-row wa ma mt-50">
+                <button class="h100 w3-bar-item w3-button w3-large w3-hover-theme mr-5" onclick="openControl()">Simple Control</button>
+            </div>
+            <div class="w3-cell-row wa ma mt-50">
+                <button class="h100 w3-bar-item w3-button w3-large w3-hover-theme" onclick="openStepperProperties()">Advanced Controls</button>
+            </div>
+        </div>
+        <footer class="w3-container w3-display-bottommiddle w3-theme w3-margin-top mb-20">
+            <div style="display: flex;">
+                <button class="h100 w3-bar-item w3-button w3-large w3-hover-theme ml-5" onclick="openData()">Data</button>
+                <button class="h100 w3-bar-item w3-button w3-large w3-hover-theme" onclick="document.getElementById('setDateTimePage').style.display='block'">Set Date/Time</button>
+                <button class="h100 w3-bar-item w3-button w3-large w3-hover-theme" onclick="openUpload()">System</button>
+            </div>
+        </footer>
+    </div>
+
+    <div id="controlScreen" style="display: none;">
+        <header class="w3-top w3-bar w3-theme w3-center">
+            <div class="w3-cell-row wa">
+                <h4 class="w3-bar-item">&lt; Back to Main</h4>
+                <!-- <h4 class="w3-display-right top-btn">Device</h4> -->
+            </div>
+        </header>
+        <div class="w3-container mt-150">
+            <div class="w3-cell-row wa ma">
+                <div>Speed</div>
+            </div>
+            <div class="w3-cell-row wa ma">
+                <div>60%</div>
+            </div>
+            <div class="w3-cell-row">
+                <input type="range" min="1" max="100" value="50" class="slider w90" id="myRangeSpeed">
+            </div>
+
+            <div class="w3-cell-row wa ma mt-50">
+                <div>Sensity</div>
+            </div>
+            <div class="w3-cell-row wa ma">
+                <div>70%</div>
+            </div>
+            <div class="w3-cell-row">
+                <input type="range" min="1" max="100" value="50" class="slider w90" id="myRangeSens">
+            </div>
+
+            <div class="w3-cell-row wa ma mt-50">
+                <div>Duration</div>
+            </div>
+            <div class="w3-cell-row wa ma">
+                <div>50%</div>
+            </div>
+            <div class="w3-cell-row">
+                <input type="range" min="1" max="100" value="50" class="slider w90" id="myRangeDuration">
+            </div>
+        </div>
+        <footer class="w3-container w3-display-bottommiddle w3-theme w3-margin-top mb-20">
+            <div style="display: flex;">
+                <button class="h100 w3-bar-item w3-button w3-large w3-hover-theme mr-5" onclick="control1()">Start</button>
+            </div>
+        </footer>
+    </div>
+    <div id="detailScreen">
+        <header class="w3-top w3-bar w3-theme w3-center">
+            <div class="w3-cell-row wa">
+                <h4 id="back-button-control" onclick="openHome()" class="w3-bar-item back-button">&lt; Back to Main</h4>
+                <!-- <h4 class="w3-display-right top-btn">Device</h4> -->
+            </div>
+        </header>
+
+        <div class="w3-container mt-150">
+            <div class="w3-cell-row">
+                <div class="w3-col s3">Speed</div>
+                <input type="range" min="0" max="100" step="1" onchange="onSpeedChange()" value="100" class="slider w3-col s6 ma" id="speed1">
+                <input type="text" class="w3-col s2 ml-5" value="100%" id="speed2" style="min-width: 80px;" />
+            </div>
+            <div class="w3-cell-row mt-50">
+                <div class="w3-col s3">Run Time</div>
+                <input type="range" min="15" max="480" onchange="onDurationChange()" value="30" class="slider w3-col s6 ma" id="duration11">
+                <input type="text" class="w3-col s2 ml-5" value="0:30" id="duration12" style="min-width: 80px;" />
+            </div>
+            <div class="w3-cell-row wa ma mt-50">
+                <button id="startBtn2" class="h100 w3-bar-item w3-button w3-large w3-hover-theme mr-5">Start</button>
+                <button id="offBtn2" onclick="onForceMotorOff()" class="h100 w3-bar-item w3-button w3-large w3-hover-theme ml-5">Off</button>
+            </div>
+        </div>
+        <div class="w3-container mt-50">
+            <div class="w3-cell-row">
+                <div class="w3-col s3">Sensitivity</div>
+                <input type="range" min="0" max="100" onchange="onSensitivityChange()" value="60" class="slider w3-col s6 ma mr-5" id="sensitivity1">
+                <input type="text" class="w3-col s2 ml-5" value="60%" id="sensitivity2" style="min-width: 80px;" />
+            </div>
+            <div class="w3-cell-row mt-50">
+                <div class="w3-col s3">Auto Speed</div>
+                <input type="range" min="0" max="100" onchange="onAutoSpeedChange()" value="70" class="slider w3-col s6 ma mr-5" id="autoSpeed1">
+                <input type="text" class="w3-col s2 ml-5" value="70%" id="autoSpeed2" style="min-width: 80px;" />
+            </div>
+            <div class="w3-cell-row mt-50">
+                <div class="w3-col s3">Run Time 2</div>
+                <input type="range" min="1" max="120" onchange="onDuration2Change()" value="30" class="slider w3-col s6 ma mr-5" id="duration21">
+                <input type="text" id="duration22" class="w3-col s2 tooltip" value="30" style="min-width: 80px;" required>
+            </div>
+        </div>
+
+        <footer class="w3-container w3-display-bottommiddle w3-theme w3-margin-top mb-20">
+            <div style="display: flex;">
+                <button class="h100 w3-bar-item w3-button w3-large w3-hover-theme ml-5" onclick="openSidebar()">Data</button>
+            </div>
+        </footer>
+    </div>
+    <div id="dataScreen">
+        <header class="w3-top w3-bar w3-theme w3-center">
+            <div class="w3-cell-row wa">
+                <h4 id="back-button-home-upload" onclick="openHome()" class="w3-bar-item back-button">&lt; Back to Main</h4>
+                <!-- <h4 class="w3-display-right top-btn">Device</h4> -->
+            </div>
+        </header>
+        <div class="w3-container mt-50">
+
+            <div class="container">
+                <input id="flatpickr" placeholder="Select Date...">
+                <div class="container-chart">
+                    <div class="external-motion">
+                        <canvas id="external" width="400" height="400"></canvas>
+                    </div>
+                    <div class="induced-motion">
+                        <canvas id="induced" width="400" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="uploadScreen">
+        <header class="w3-top w3-bar w3-theme w3-center">
+            <div class="w3-cell-row wa">
+                <h4 id="back-button-home-upload" onclick="openHome()" class="w3-bar-item back-button">&lt; Back to Main</h4>
+                <!-- <h4 class="w3-display-right top-btn">Device</h4> -->
+            </div>
+        </header>
+
+        <div class="w3-container mt-150">
+            <div class="w3-container w3-display-middle">
+                <div class="w3-cell-row wa ma mt-50">
+                    <h6>Select Firmware: </h6>
+                    <input type="file" id="my_file" accept=".bin">
+                    <!-- <button id="get_file" class="h100 w3-bar-item w3-button w3-large w3-hover-theme">Update Firmware</button> -->
+                </div>
+                <div class="w3-cell-row wa ma mt-50">
+                    <h6>Select File System: </h6><input type="file" id="my_spiffs_file" accept=".bin, .html, .css, .js">
+                    <!-- <button id="get_spiffs_file" class="h100 w3-bar-item w3-button w3-large w3-hover-theme">Update UI</button> -->
+                </div>
+                <div class="w3-cell-row wa ma mt-50">
+                    <div style="display: flex;">
+                        <button id="btnUpggrade" class="h100 w3-bar-item w3-button w3-large w3-hover-theme mr-5" onclick="myUploadFile();">Upgrade</button>
+                        <h6 id="txtUpdateProgress" class="ml-5">0 %</h6>
+                    </div>
+                </div>
+                <div class="w3-cell-row wa ma">
+                    <h6 id="firmwareVer">Firmware : 1.0.0 (2022-09-10)</h6>
+                    <h6>FileSystem: 1.0.8 (2022-10-08)</h6>
+                </div>
+            </div>
+        </div>
+        <footer class="w3-container w3-display-bottommiddle w3-theme w3-margin-top mb-20">
+            <div style="display: flex;">
+                <button class="h100 w3-bar-item w3-button w3-large w3-hover-theme" onclick="checkAndSendRebootRequest()">Reboot</button>
+            </div>
+        </footer>
+    </div>
+    <div id="stepperPropertiesScreen">
+        <header class="w3-top w3-bar w3-theme w3-center">
+            <div class="w3-cell-row wa">
+                <h4 id="back-button-home-properties" onclick="openHome()" class="w3-bar-item back-button">&lt; Back to Main</h4>
+                <!-- <h4 class="w3-display-right top-btn">Device</h4> -->
+            </div>
+        </header>
+
+        <div class="w3-container mt-150" style="overflow: auto; max-height: 350px;">
+            <div class="w3-cell-row">
+                <div class="w3-col s3">Speed Scale</div>
+                <input type="range" min="3000" max="5000" step="10" onchange="onPercentToSpeedRatioChange()" value="3500" class="slider w3-col s6 ma" id="percentToSpeedRatio1">
+                <input type="text" class="w3-col s2 ml-5" value="3500" id="percentToSpeedRatio2" style="min-width: 80px;" />
+            </div>
+            <div class="w3-cell-row mt-50">
+                <div class="w3-col s3">Microstep</div>
+                <select name="Microstep" id="microStep_dropdown" onclick="onMicroStepChange()">
+                        <option value="microStep_3" selected="selected">8</option>
+                        <option value="microStep_4">16</option>
+                        <option value="microStep_5">32</option>
+                        <option value="microStep_6">64</option>
+                    </select>
+            </div>
+
+            <div class="w3-cell-row mt-50">
+                <div class="w3-col s3">RMS Current</div>
+                <input type="range" min="1000" max="2000" step="10" onchange="onRMSCurrentChange()" value="1650" class="slider w3-col s6 ma mr-5" id="rmsCurrent1">
+                <input type="text" class="w3-col s2 ml-5" value="1650" id="rmsCurrent2" style="min-width: 80px;" />
+            </div>
+            <div class="w3-cell-row mt-50">
+                <div class="w3-col s3">Acceleration</div>
+                <input type="range" min="3" max="10" step="1" onchange="onAccelerationChange()" value="3" class="slider w3-col s6 ma mr-5" id="acceleration1">
+                <input type="text" class="w3-col s2 ml-5" value="3" id="acceleration2" style="min-width: 80px;" />
+            </div>
+            <div class="w3-cell-row mt-50">
+                <div class="w3-col s3">Thermo</div>
+                <select name="ThermalSensor" id="thermal_dropdown" onclick="onThermalSettingChange()">
+                        <option value="thermal_off">Off</option>
+                        <option value="thermal_on" selected="selected">On</option>
+                    </select>
+            </div>
+            <div class="w3-cell-row mt-50">
+                <div class="w3-col s3">Blower Volt</div>
+                <input type="range" min="0" max="1" step="1" onchange="onBlowerVoltChange()" value="1" class="slider w3-col s6 ma mr-5" id="blowerVolt1">
+                <input type="text" class="w3-col s2 ml-5" value="1" id="blowerVolt2" style="min-width: 80px;" />
+            </div>
+            <div class="w3-cell-row mt-50">
+                <div class="w3-col s3">Stall Time</div>
+                <input type="range" min="3" max="60" step="1" onchange="onStallTimeChange()" value="3" class="slider w3-col s6 ma mr-5" id="stallTime1">
+                <input type="text" class="w3-col s2 ml-5" value="3" id="stallTime2" style="min-width: 80px;" />
+            </div>
+            <div class="w3-cell-row mt-50">
+                <div class="w3-col s3">MPU G Threshold</div>
+                <input type="range" min="0" max="30" step="1" onchange="onGThresholdChange()" value="3" class="slider w3-col s6 ma mr-5" id="gThreshold1">
+                <input type="text" class="w3-col s2 ml-5" value="0.03" id="gThreshold2" style="min-width: 80px;" />
+            </div>
+            <div class="w3-cell-row mt-50">
+                <div class="w3-col s3">MPU Idle time</div>
+                <input type="range" min="0" max="30" step="1" onchange="onMpuIdleTime1Change()" value="15" class="slider w3-col s6 ma mr-5" id="mpuIdleTime1">
+                <input type="text" class="w3-col s2 ml-5" value="5" id="mpuIdleTime2" style="min-width: 80px;" />
+            </div>
+            <div class="w3-cell-row mt-50">
+                <div class="w3-col s3">Overheat Time</div>
+                <input type="range" min="10" max="60" step="1" onchange="onOverheatTimeChange()" value="15" class="slider w3-col s6 ma mr-5" id="overHeatTime1">
+                <input type="text" class="w3-col s2 ml-5" value="15" id="overHeatTime2" style="min-width: 80px;" />
+            </div>
+            <div class="w3-cell-row mt-50">
+                <div class="w3-col s3">Debug</div>
+                <select name="debugLevel" id="debugLevel_dropdown" onclick="onDebugSettingChange()">
+                    <option value="debug_off" selected="selected">Off</option>
+                        <option value="debug_on">On</option>
+                    </select>
+            </div>
+            <div class="w3-cell-row mt-50">
+                <div class="w3-col s3">Stall Detection Threshold</div>
+                <input type="range" min="0" max="250" step="1" value="15" class="slider w3-col s6 ma mr-5" id="stallGuard4Threhold1">
+                <input type="text" class="w3-col s2 ml-5" value="15" id="stallGuard4Threhold2" style="min-width: 80px;" />
+            </div>
+            <div class="w3-cell-row mt-50">
+                <div class="w3-col s3">Speed via Button</div>
+                <label class="w3-col s1 mr-5">Low</label>
+                <input type="text" class="w3-col s1 ml-5 mr-5" value="200" id="buttonViaSpeed_low" style="min-width: 40px;" />
+                <label class="w3-col s1 ml-5 mr-5">Med</label>
+                <input type="text" class="w3-col s1 ml-5 mr-5" value="350" id="buttonViaSpeed_med" style="min-width: 40px;" />
+                <label class="w3-col s1 ml-5 mr-5">High</label>
+                <input type="text" class="w3-col s1 ml-5 mr-5" value="500" id="buttonViaSpeed_high" style="min-width: 40px;" />
+            </div>
+        </div>
+
+        <div class="w3-cell-row wa ma mt-50">
+            <button id="downloadPropertiesToStepper" onclick="downloadDriverProperties(false)" class="h100 w3-bar-item w3-button w3-large w3-hover-theme mr-5">Download To Driver</button>
+            <button id="resetDefaultBtn" onclick="downloadDriverProperties(true)" class="h100 w3-bar-item w3-button w3-large w3-hover-theme ml-5">Default</button>
+        </div>
+
+        <footer class="w3-container w3-display-bottommiddle w3-theme w3-margin-top mb-20">
+            <div style="display: flex;">
+                <button class="h100 w3-bar-item w3-button w3-large w3-hover-theme ml-5" onclick="openSidebar()">Data</button>
+            </div>
+        </footer>
+    </div>
+
+    <div id="setDateTimePage" class="w3-modal mt-150">
+        <div class="w3-modal-content w3-modal-m" style="border-color: #009688; border-style: solid;">
+            <div class="w3-container">
+                <span onclick="document.getElementById('setDateTimePage').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                <div class="w3-container mt-50 mb-20">
+                    <div class="w3-cell-row">
+                        <div class="w3-col s3">Time:</div>
+                        <input type="datetime-local" id="systemTime" name="systemTime">
+                    </div>
+                    <div class="w3-cell-row wa ma mt-50">
+                        <button id="startBtnDataTime" onclick="setDateTime()" class="h100 w3-bar-item w3-button w3-large w3-hover-theme">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // date time;
+        var now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('systemTime').value = now.toISOString().slice(0, 16);
+
+        // document.getElementById('get_file').onclick = function() {
+        //     document.getElementById('my_file').click();
+        // };
+
+        // document.getElementById('get_spiffs_file').onclick = function() {
+        //     document.getElementById('my_spiffs_file').click();
+        // };
+
+        document.getElementsByClassName('back-button')[0]
+            .addEventListener('click', function(event) {
+                showScreen("homeScreen");
+                getInformation();
+                console.log('back button');
+            });
+
+
+        var m_speed = 100;
+        var m_sensitivity = 0;
+        var m_autoSpeed = 0;
+        var m_Duration2InSec = 0;
+        var m_durationInSec = 0;
+        var m_isRunning = 0;
+
+        var m_percentToSpeedRatio = 1200;
+        var m_microStep = 128;
+        var m_rmsCurrent = 1650;
+        var m_acceleration = 2000;
+        var m_thermalEnable = 1;
+        var m_blowerVolt = 4;
+        var m_stallTime = 3;
+        var m_gThreshold = 50;
+        var m_mpuIdleTime = 5;
+        var m_overHeatTime = 15;
+        var m_stallGuard4Threshold = 15;
+        var m_debugLevel = 0;
+        var m_buttonViaSpeed_low = 200;
+        var m_buttonViaSpeed_med = 350;
+        var m_buttonViaSpeed_high = 500;
+        var m_screenName = "";
+        var m_fimrwareVer = "_._._";
+        showScreen("homeScreen");
+        getInformation();
+        getDriverInfo();
+
+        // Control page functions
+        function onSpeedChange() {
+            m_speed = document.getElementById('speed1').value;
+        }
+
+        function onDurationChange() {
+            m_durationInSec = document.getElementById('duration11').value;
+            console.log('m_durationInSec = ' + m_durationInSec);
+        }
+
+        function onSensitivityChange() {
+            m_sensitivity = document.getElementById('sensitivity1').value;
+        }
+
+        function onAutoSpeedChange() {
+            m_autoSpeed = document.getElementById('autoSpeed1').value;
+        }
+
+        function onDuration2Change() {
+            m_Duration2InSec = document.getElementById('duration21').value;
+        }
+
+        function calculateTimeString(value) {
+            var minutes = Math.floor(value / 60);
+            var seconds = value - minutes * 60;
+            return minutes + ':' + seconds + ''
+        }
+
+        // Stepper properties functions
+        function onPercentToSpeedRatioChange() {
+            m_percentToSpeedRatio = document.getElementById('percentToSpeedRatio1').value;
+        }
+
+        function onMicroStepChange() {
+            _microStep = document.getElementById('microStep_dropdown').value;
+            console.log(_microStep);
+            m_microStep = convertMicroStepDropValue2Value(_microStep);
+            console.log(m_microStep);
+        }
+
+        function onRMSCurrentChange() {
+            m_rmsCurrent = document.getElementById('rmsCurrent1').value;
+        }
+
+        function onAccelerationChange() {
+            m_acceleration = document.getElementById('acceleration1').value;
+        }
+
+        function onThermalSettingChange() {
+            _thermalText = document.getElementById('thermal_dropdown').value;
+            m_thermalEnable = convertThermalDropValue2Value(_thermalText);
+            console.log('thermal: ' + _thermalText + ', m_thermalEnable: ' + m_thermalEnable);
+        }
+
+        document.getElementById('percentToSpeedRatio1').oninput = function() {
+            document.getElementById('percentToSpeedRatio2').value = this.value;
+        }
+
+        document.getElementById('rmsCurrent1').oninput = function() {
+            document.getElementById('rmsCurrent2').value = this.value;
+        }
+
+        document.getElementById('acceleration1').oninput = function() {
+            document.getElementById('acceleration2').value = this.value;
+        }
+
+        document.getElementById('blowerVolt1').oninput = function() {
+            document.getElementById('blowerVolt2').value = this.value;
+        }
+
+        document.getElementById('stallTime1').oninput = function() {
+            document.getElementById('stallTime2').value = this.value;
+        }
+
+        document.getElementById('gThreshold1').oninput = function() {
+            document.getElementById('gThreshold2').value = this.value / 100.0;
+        }
+
+        document.getElementById('mpuIdleTime1').oninput = function() {
+            document.getElementById('mpuIdleTime2').value = this.value;
+        }
+
+        document.getElementById('overHeatTime1').oninput = function() {
+            document.getElementById('overHeatTime2').value = this.value;
+        }
+
+        document.getElementById('duration21').oninput = function() {
+            document.getElementById('duration22').value = calculateTimeString(this.value);
+        }
+
+        document.getElementById('duration11').oninput = function() {
+            document.getElementById('duration12').value = calculateTimeString(this.value);
+        }
+
+        document.getElementById('stallGuard4Threhold1').oninput = function() {
+                document.getElementById('stallGuard4Threhold2').value = this.value;
+            }
+            // --------//
+        var elements = ['speed', 'sensitivity', 'autoSpeed'];
+        elements.forEach((e, i) => {
+            document.getElementById(e + '1').oninput = function() {
+                document.getElementById(e + '2').value = this.value + '%';
+            }
+
+            document.getElementById(e + '2').oninput = function() {
+                if (!this.value) {
+                    document.getElementById(e + '1').value = 0;
+                    return;
+                }
+                var isNumber = isNumeric(this.value);
+                console.log("is  " + isNumber + this.value)
+                if (isNumber) {
+                    document.getElementById(e + '1').value = this.value.split('%')[0];
+                } else {
+                    document.getElementById(e + '1').value = 0;
+                }
+            }
+
+            document.getElementById(e + '2').onmouseleave = function() {
+                if (!this.value) {
+                    document.getElementById(e + '2').value = "0%";
+                    return;
+                }
+                var isNumber = isNumeric(this.value);
+                if (isNumber) {
+                    if (!this.value.endsWith("%")) {
+                        document.getElementById(e + '2').value = this.value + "%";
+                    }
+                    var val = Number(this.value.split('%')[0]);
+                    if (val > 100) {
+                        document.getElementById(e + '2').value = "100%";
+                    }
+                    if (val < 0) {
+                        document.getElementById(e + '2').value = "0%";
+                    }
+
+                } else {
+                    document.getElementById(e + '2').value = "0%";
+                }
+            }
+        })
+
+        function isNumeric(str) {
+            if (typeof str != "string") return false
+            return !isNaN(str) ||
+                !isNaN(str.split('%')[0])
+        }
+
+        function showScreen(name) {
+            var screens = ["homeScreen", "controlScreen", "detailScreen", "stepperPropertiesScreen", "dataScreen", "uploadScreen"];
+            m_screenName = name;
+            console.log(m_screenName);
+            screens.forEach((s, i) => {
+
+                if (s == name) {
+                    document.getElementById(name).style.display = "";
+                    if (name == "dataScreen") {
+                        drawChart();
+                    }
+                } else {
+
+                    document.getElementById(s).style.display = "none";
+
+                }
+            })
+        }
+
+        function openControl() {
+            getInformation();
+            showScreen("detailScreen");
+        }
+
+        function openUpload() {
+            getSoftwareVersion();
+            document.getElementById('txtUpdateProgress').innerHTML = '';
+            showScreen("uploadScreen");
+        }
+
+        function openStepperProperties() {
+            getDriverInfo();
+            showScreen("stepperPropertiesScreen");
+        }
+
+        function openHome() {
+            showScreen("homeScreen");
+        }
+
+        function openData() {
+            showScreen("dataScreen");
+        }
+
+        function myUploadFile() {
+            let selectedFirmwareFile = document.getElementById('my_file').files[0];
+            let selectedSpiffsFile = document.getElementById('my_spiffs_file').files[0];
+            // File exist & name validation
+            if (selectedFirmwareFile === undefined || selectedFirmwareFile !== undefined && selectedFirmwareFile.name == "") {
+                alert('Firmware: Please select a Firmware file');
+            } else {
+                console.log('selectedFirmwareFile: ' + selectedFirmwareFile.name);
+                if (!selectedFirmwareFile.name.includes('Firmware')) {
+                    alert('Firmware: Please select a file start with Firmware_x.y.z.ino.bin');
+                    return;
+                }
+            }
+
+            if (selectedSpiffsFile === undefined || selectedSpiffsFile !== undefined && selectedSpiffsFile.name == "") {
+                alert('FileSystem: Please select a Filesystem file');
+                return;
+            } else {
+                console.log('selectedSpiffsFile: ' + selectedSpiffsFile.name);
+                if (!selectedSpiffsFile.name.includes('FileSystem')) {
+                    alert('FileSystem: Please select a file start with FileSystem_x.y.z.spiffs.bin');
+                    return;
+                }
+            }
+
+            // send UI first:
+            document.getElementById('btnUpggrade').disabled = true;
+            document.getElementById('txtUpdateProgress').innerHTML = '0 %';
+            sendSpiffsForUpggrade(selectedSpiffsFile);
+            console.log('end of sendSpiffsForUpggrade');
+        }
+
+        function sendFirmwareForUpggrade(firmwareFile) {
+            console.log('sendFirmwareForUpggrade::' + firmwareFile.name);
+            let formData = new FormData();
+            formData.append("file", firmwareFile);
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    document.getElementById('txtUpdateProgress').innerHTML = '100 %';
+                    document.getElementById('btnUpggrade').disabled = false;
+                    alert('After confirming OK, the device will reboot. Wifi will reconnect after 15s or more. Please be patient.');
+                    sendRebootRequest();
+                }
+            };
+            xhr.open('POST', 'update');
+            xhr.send(formData);
+        }
+
+        function sendSpiffsForUpggrade(spiffsFile) {
+            console.log('sendSpiffsForUpggrade::' + spiffsFile.name)
+            let formData = new FormData();
+            formData.append("file", spiffsFile);
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    document.getElementById('txtUpdateProgress').innerHTML = '50 %';
+                    let _FirmwareFile = document.getElementById('my_file').files[0];
+                    sendFirmwareForUpggrade(_FirmwareFile);
+                }
+            };
+            xhr.open('POST', 'update-spiffs');
+            xhr.send(formData);
+        }
+
+        function sendRebootRequest() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                console.log('Send reboot success');
+            }
+
+            xhr.open('GET', 'reboot');
+            xhr.send('reboot');
+        }
+
+        function checkAndSendRebootRequest() {
+            let rebootConfirmation = confirm('Are you sure to reboot device?');
+            if (rebootConfirmation) {
+                sendRebootRequest();
+            }
+        }
+
+        function onFileSelected(event) {
+            var selectedFile = event.target.files[0];
+            let formData = new FormData();
+            formData.append("file", selectedFile);
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    alert("Firmware updated!");
+                }
+            };
+            xhr.open('POST', 'update');
+            xhr.send(formData);
+        }
+
+        function onFileSPIFFSSelected(event) {
+            var selectedFile = event.target.files[0];
+            let formData = new FormData();
+            formData.append("file", selectedFile);
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    alert("UI updated!");
+                }
+            };
+            xhr.open('POST', 'update-spiffs');
+            xhr.send(formData);
+        }
+
+        function control1() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {}
+            };
+            xhr.open('POST', 'control1');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            var data = 'speed=' + m_speed + '&sensitivity=' + m_sensitivity + '&durationInSec=' + m_durationInSec;
+            xhr.send(data);
+        }
+
+        function control2() {
+            console.log('control2 is called');
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    getInformation();
+                }
+            };
+
+            xhr.open('POST', 'control2');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+            m_speed = document.getElementById('speed1').value;
+            m_durationInSec = document.getElementById('duration11').value;
+            m_sensitivity = document.getElementById('sensitivity1').value;
+            m_Duration2InSec = document.getElementById('duration21').value;
+            m_autoSpeed = document.getElementById('autoSpeed1').value;
+
+            var data = 'speed=' + m_speed + '&sensitivity=' + m_sensitivity + '&durationInSec=' + m_durationInSec +
+                '&autoTimeInSec=' + m_Duration2InSec + '&autoSpeed=' + m_autoSpeed;
+
+            console.log('control2(): ' + data);
+            xhr.send(data);
+        }
+
+        function downloadDriverProperties(isResetDefault) {
+            console.log('downloadDriverProperties is called');
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    getDriverInfo();
+                    alert("Driver properties downloaded");
+                }
+            };
+
+            xhr.open('POST', 'downloadToDriver');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            m_percentToSpeedRatio = document.getElementById('percentToSpeedRatio1').value;
+            _microStep = document.getElementById('microStep_dropdown').value;
+            m_microStep = convertMicroStepDropValue2Value(_microStep);
+            m_rmsCurrent = document.getElementById('rmsCurrent1').value;
+            m_acceleration = document.getElementById('acceleration1').value;
+
+            _thermalText = document.getElementById('thermal_dropdown').value;
+            m_thermalEnable = convertThermalDropValue2Value(_thermalText);
+            m_blowerVolt = document.getElementById('blowerVolt1').value;
+            m_stallTime = document.getElementById('stallTime1').value;
+            m_gThreshold = document.getElementById('gThreshold1').value;
+            m_mpuIdleTime = document.getElementById('mpuIdleTime1').value;
+            m_overHeatTime = document.getElementById('overHeatTime1').value;
+            m_stallGuard4Threshold = document.getElementById('stallGuard4Threhold1').value;
+            _debugLevel = document.getElementById('debugLevel_dropdown').value;
+            m_debugLevel = convertDebugLevelDropValue2Value(_debugLevel);
+            m_buttonViaSpeed_low = document.getElementById('buttonViaSpeed_low').value;
+            m_buttonViaSpeed_med = document.getElementById('buttonViaSpeed_med').value;
+            m_buttonViaSpeed_high = document.getElementById('buttonViaSpeed_high').value;
+
+            var data = '';
+            if (isResetDefault) {
+                data += 'resetDefault=' + 1;
+            } else {
+                data += 'percentToSpeedRatio=' + m_percentToSpeedRatio + '&microStep=' + m_microStep + '&rmsCurrent=' + m_rmsCurrent +
+                    '&thermalEnable=' + m_thermalEnable +
+                    '&acceleration=' + m_acceleration + '&blowerVolt=' + m_blowerVolt + '&stallTime=' + m_stallTime + '&gThreshold=' + m_gThreshold +
+                    '&mpuIdleTime=' + m_mpuIdleTime + '&overHeatTime=' + m_overHeatTime + '&debugLevel=' + m_debugLevel +
+                    '&stallGuard4Threshold=' + m_stallGuard4Threshold +
+                    '&buttonViaSpeed_low=' + m_buttonViaSpeed_low + '&buttonViaSpeed_med=' + m_buttonViaSpeed_med + '&buttonViaSpeed_high=' + m_buttonViaSpeed_high;
+            }
+            console.log('Sent ' + data);
+            xhr.send(data);
+        }
+
+        function setDateTime() {
+            var date = new Date(document.getElementById('systemTime').value);
+            var _year = date.getFullYear();
+            var _month = date.getMonth() + 1;
+            var _day = date.getDate();
+            var _hour = date.getHours();
+            var _min = date.getMinutes();
+            // var _sec = date.getSeconds();
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    alert("Date and Time is set!");
+                }
+            };
+            xhr.open('POST', 'update-time');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            var data = 'year=' + _year + '&month=' + _month + '&day=' + _day +
+                '&hour=' + _hour + '&minute=' + _min;
+            console.log('Update new date ' + data);
+            xhr.send(data);
+        }
+
+        function stop() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    getInformation();
+                }
+            };
+            xhr.open('POST', 'stop');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            var data = 'val=' + true;
+            xhr.send(data);
+        }
+
+        function onForceMotorOff() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    getInformation();
+                }
+            };
+            xhr.open('POST', 'off');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            var data = 'val=' + true;
+            xhr.send(data);
+        }
+
+        function getInformation() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    var info = JSON.parse(xhr.responseText);
+                    document.getElementById('speed1').value = info.Speed;
+                    m_speed = info.Speed;
+                    document.getElementById('speed1').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+                    document.getElementById('duration11').value = info.DurationInSec;
+                    document.getElementById('duration11').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+                    document.getElementById('sensitivity1').value = info.Sensitivity;
+                    m_sensitivity = info.Sensitivity;
+                    document.getElementById('sensitivity1').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+                    document.getElementById('autoSpeed1').value = info.AutoSpeed;
+                    m_Duration2InSec = info.AutoSpeed;
+                    document.getElementById('autoSpeed1').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+
+                    document.getElementById('duration21').value = info.AutoTimeInSec;
+                    m_Duration2InSec = info.AutoTimeInSec;
+                    document.getElementById('duration21').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+                    m_isRunning = info.IsRunning;
+                    console.log('getInformation: is running: ' + m_isRunning + ', duration: ' + m_durationInSec);
+                    updateBtnStatus();
+                }
+            };
+            xhr.open('GET', 'get-current-info');
+            xhr.send();
+        }
+
+        function getUpdateSync() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    var info = JSON.parse(xhr.responseText);
+                    if (info.IsChanged === 'true' || info.IsChanged === true) {
+                        document.getElementById('duration11').value = info.DurationInSec;
+                        document.getElementById('duration11').dispatchEvent(new Event('input', {
+                            bubbles: true
+                        }));
+                        m_isRunning = info.IsRunning;
+                        console.log('getUpdateSync: is running: ' + m_isRunning + ', duration: ' + m_durationInSec);
+                        updateBtnStatus();
+                    } else {
+                        console.log('get-update-sync: Success, nothing changed');
+                    }
+                }
+            };
+            xhr.open('GET', 'get-update-sync');
+            xhr.send();
+        }
+
+        function getDriverInfo() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    var info = JSON.parse(xhr.responseText);
+                    console.log('Received: ' + info.PercentToSpeedRatio + ', ' +
+                        info.MicroStep + ', ' + info.RMSCurrent + ', ' + info.Acceleration);
+                    document.getElementById('percentToSpeedRatio1').value = info.PercentToSpeedRatio;
+                    m_percentToSpeedRatio = info.PercentToSpeedRatio;
+                    document.getElementById('percentToSpeedRatio1').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+
+                    document.getElementById('microStep_dropdown').value = convertMicroStepOptionFromInt(info.MicroStep);
+                    m_microStep = convertMicroStepOptionFromInt(info.MicroStep);;
+                    document.getElementById('microStep_dropdown').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+
+                    document.getElementById('rmsCurrent1').value = info.RMSCurrent;
+                    m_rmsCurrent = info.RMSCurrent;
+                    document.getElementById('rmsCurrent1').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+
+                    document.getElementById('acceleration1').value = info.Acceleration;
+                    m_acceleration = info.Acceleration;
+                    document.getElementById('acceleration1').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+
+                    document.getElementById('thermal_dropdown').value = convertThermalValue2DropValue(info.ThermalEnable);
+                    m_thermalEnable = convertThermalValue2DropValue(info.ThermalEnable);;
+                    document.getElementById('thermal_dropdown').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+
+                    document.getElementById('blowerVolt1').value = info.BlowerVolt;
+                    m_blowerVolt = info.m_blowerVolt;
+                    document.getElementById('blowerVolt1').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+
+                    document.getElementById('stallTime1').value = info.StallTime;
+                    m_stallTime = info.StallTime;
+                    document.getElementById('stallTime1').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+
+                    document.getElementById('gThreshold1').value = info.GThreshold;
+                    m_gThreshold = info.GThreshold;
+                    document.getElementById('gThreshold1').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+
+                    document.getElementById('mpuIdleTime1').value = info.MPUIdleTime;
+                    m_mpuIdleTime = info.MPUIdleTime;
+                    document.getElementById('mpuIdleTime1').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+
+                    document.getElementById('overHeatTime1').value = info.OverHeatTime;
+                    m_overHeatTime = info.OverHeatTime;
+                    document.getElementById('overHeatTime1').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+
+                    document.getElementById('stallGuard4Threhold1').value = info.StallGuard4Threshold;
+                    m_stallGuard4Threshold = info.StallGuard4Threshold;
+                    document.getElementById('stallGuard4Threhold1').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+
+                    //DebugLevel
+                    document.getElementById('debugLevel_dropdown').value = convertDebugLevelValue2DropValue(info.DebugLevel);
+                    m_debugLevel = convertThermalValue2DropValue(info.DebugLevel);;
+                    document.getElementById('debugLevel_dropdown').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+
+                    document.getElementById('buttonViaSpeed_low').value = info.Button_SpeedLow;
+                    m_buttonViaSpeed_low = info.Button_SpeedLow;
+                    document.getElementById('buttonViaSpeed_low').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+
+                    document.getElementById('buttonViaSpeed_med').value = info.Button_SpeedMed;
+                    m_buttonViaSpeed_med = info.Button_SpeedMed;
+                    document.getElementById('buttonViaSpeed_med').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+
+                    document.getElementById('buttonViaSpeed_high').value = info.Button_SpeedHigh;
+                    m_buttonViaSpeed_high = info.Button_SpeedHigh;
+                    document.getElementById('buttonViaSpeed_high').dispatchEvent(new Event('input', {
+                        bubbles: true
+                    }));
+                    // updateDriverStatus();
+                }
+            };
+            xhr.open('GET', 'get-driver-info');
+            xhr.send();
+        }
+
+        function getSoftwareVersion() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    document.getElementById('firmwareVer').innerHTML = "Firmware: " + xhr.responseText;
+                }
+            };
+            xhr.open('GET', 'get-software-ver');
+            xhr.send();
+        }
+
+        function updateBtnStatus() {
+            console.log('updateStatus: called');
+            if (!this.m_isRunning) {
+                document.getElementById('startBtn2').removeEventListener("onclick", stop, false);
+                document.getElementById('startBtn2').onclick = function() {
+                    control2();
+                };
+                document.getElementById('startBtn2').innerHTML = "Start";
+                document.getElementById('offBtn2').disabled = true;
+            } else {
+                document.getElementById('startBtn2').removeEventListener("onclick", control2, false);
+                document.getElementById('startBtn2').onclick = function() {
+                    console.log("jaja");
+                    stop();
+                };
+                document.getElementById('startBtn2').innerHTML = "Stop";
+                document.getElementById('offBtn2').disabled = false;
+            }
+            // document.getElementById('duration11').value = m_durationInSec;
+            // document.getElementById('duration12').value = m_durationInSec;
+
+            // document.getElementById('duration21').value = m_Duration2InSec;
+            // document.getElementById('duration22').value = m_Duration2InSec;
+        }
+
+        function convertMicroStepDropValue2Value(microStepDropDown) {
+            switch (microStepDropDown) {
+                case 'microStep_3':
+                    {
+                        return 8;
+                    }
+                case 'microStep_4':
+                    {
+                        return 16;
+                    }
+                case 'microStep_5':
+                    {
+                        return 32;
+                    }
+                case 'microStep_6':
+                    {
+                        return 64;
+                    }
+                default:
+                    return 8;
+            }
+        }
+
+        function convertThermalDropValue2Value(thermal_setting) {
+            return ((thermal_setting == 'thermal_on') ? 1 : 0);
+        }
+
+        function convertDebugLevelDropValue2Value(debugLevel) {
+            return ((debugLevel == 'debug_on') ? 1 : 0);
+        }
+
+        function convertThermalValue2DropValue(thermal_setting) {
+            if (thermal_setting)
+                return 'thermal_on';
+            else
+                return 'thermal_off';
+        }
+
+        function convertDebugLevelValue2DropValue(debug_level) {
+            if (debug_level)
+                return 'debug_on';
+            else
+                return 'debug_off';
+        }
+
+        function convertMicroStepOptionFromInt(_int) {
+            var pow = 0;
+            switch (_int) {
+                case 64:
+                    pow = 6;
+                    break;
+                case 32:
+                    pow = 5;
+                    break;
+                case 16:
+                    pow = 4;
+                    break;
+                case 8:
+                    pow = 3;
+                    break;
+                default:
+                    pow = 3;
+                    break;
+            }
+            return 'microStep_' + pow;
+        }
+
+        // closeSidebar();
+        function openSidebar() {
+            // document.getElementById("mySidebar").style.display = "block";
+        }
+
+        setInterval(function() {
+            // console.log('setInterval m_screenName = ' + m_screenName);
+            if (m_screenName !== undefined && 'detailScreen' === m_screenName) {
+                getUpdateSync();
+            } else {
+                // console.log('dont request to esp32, save resource');
+            }
+        }, 1000);
+    </script>
+    <script src="./assets/js/chart.min.js"></script>
+    <script src="./assets/js/flatpickr.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>

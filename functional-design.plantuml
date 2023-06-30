@@ -1,0 +1,54 @@
+@startuml
+
+skinparam ComponentStyle rectangle
+skinparam Linetype ortho
+
+package "esp main" {
+    component "ESP Main" as com_espMain #Orange {
+
+    }
+    component "ESPAsyncWebServer" as libESPAsync #Cyan {
+        component AsyncTCP
+        component ArduinoJson
+    }
+
+}
+
+package Configurations {
+    component "Debug Log" as com_DebugLogconfig #LightYellow
+    component "Wifi Config" as com_wifiConfig #LightYellow
+}
+
+package "Web Server" as pkg_WebServer {
+    component "WebServer" as com_WebServer #LightGreen
+    component "EEPROM" as com_eeprom #LightGreen
+    component "DNS" as com_DNS #LightGreen
+
+    package "Web Interface" as htmls #LightGray {
+        component "index.html" as com_index #Violet
+        component "captive.html" as com_captive #Violet
+        component "assets (css, js)" as com_assets #Violet
+    }
+
+    com_WebServer <--> com_eeprom
+    com_WebServer <-left-> com_DNS
+    com_WebServer -right-> htmls
+}
+
+com_espMain -left- com_wifiConfig
+com_espMain -down- com_WebServer
+
+
+com_WebServer -- com_DebugLogconfig
+com_espMain -- com_DebugLogconfig
+com_wifiConfig -- com_DebugLogconfig
+
+legend top right
+    |Color| Meaning |
+    |<#Orange>| Main Arduino |
+    |<#LightGreen>| Server Class |
+    |<#Violet>| User Interface |
+    |<#LightYellow>| Configuration Class |
+    |<#Cyan>| Libs |
+endlegend
+@enduml
