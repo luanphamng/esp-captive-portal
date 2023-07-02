@@ -11,4 +11,14 @@ After click on the link on the captive.html, user will be redirected to index.ht
 + AsyncTCP (Via Arduino IDE's Libraries Manager)
 
 
+# Issue
+
+1. Can not flash on Ubuntu: Please give it permission by execute this command:
+```C++
+    $ sudo chmod 777 /dev/tty***
+```
+    where *** is the id of your ESP32 connection
+
+2. Can not find build_command.json
+    Remove output/build_command.json then rebuild
 

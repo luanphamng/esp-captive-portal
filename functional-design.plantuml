@@ -7,11 +7,15 @@ package "esp main" {
     component "ESP Main" as com_espMain #Orange {
 
     }
-    component "ESPAsyncWebServer" as libESPAsync #Cyan {
-        component AsyncTCP
-        component ArduinoJson
-    }
 
+    component Libraries {
+        component "ESPAsyncWebServer" as lib_ESPAsync #Cyan {
+        }
+        component "AsyncTCP" as lib_AsyncTCP #Cyan
+        component "ArduinoJson" as lib_ArduinoJson #Cyan
+
+        lib_ESPAsync -up-|> lib_AsyncTCP
+    }
 }
 
 package Configurations {

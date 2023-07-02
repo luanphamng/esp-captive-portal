@@ -1,8 +1,11 @@
 #include "WebServer.h"
 #include "DebugConfig.h"
+#include "MyEEPROM.h"
 
 const char *webUiHtml = "/index.html";
 const char *webUiCaptivePortal = "/captive.html";
+
+using namespace espEeprom;
 
 #define ENABLE_DNS
 
@@ -51,9 +54,13 @@ void sendResponse(AsyncWebServerRequest *request, int rc, const char *message)
     buildStatusResponse(&responseBody, rc, message);
     request->send(rc, "application/json", responseBody);
 }
-
+void loadSavedData() {
+    espEeprom::loadMotorSettingFromEEPROM(configData);
+    espEeprom::loadUserControlDataToEEPROM(controlData);
+}
 void startWebserver(ControlDataMotor_t *config, callback_t_config saveConfigCallback, callback_t_cmd commandCallback)
 {
+    loadSavedData();
     _saveConfigCallback = saveConfigCallback;
     _commandCallback = commandCallback;
     SerialPrintDebug(true, "Starting Webserver on port 80");
