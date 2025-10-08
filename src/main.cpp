@@ -8,6 +8,7 @@
 #include "soc/soc.h"
 #include "soc/rtc_cntl_reg.h"
 #include <Update.h>
+#include <WiFi.h>
 
 #include "WebServer.h"
 #include "WiFiConfig.h"
@@ -40,13 +41,21 @@ void setup() {
     // while (!Serial);
 #endif
     espEeprom::begin();
-
+    startSPIFFS();
     initWifi();
 
     startWebserver(&g_controlData, saveConfigToSpiffs, commandHandler);
+
 }
 
+long previousMillis = 0;
+long currentMillis = 0;
 
 void loop() {
-    
+    handleTasks();
+    currentMillis = millis();
+    if (currentMillis - previousMillis >= 5000) {
+        previousMillis = millis();
+        display_connected_devices();
+    }
 }

@@ -1,13 +1,12 @@
 #include "WebServer.h"
 #include "DebugConfig.h"
 #include "MyEEPROM.h"
+#include <WiFi.h>
 
 const char *webUiHtml = "/index.html";
 const char *webUiCaptivePortal = "/captive.html";
 
 using namespace espEeprom;
-
-#define ENABLE_DNS
 
 ControlDataMotor_t controlData = {};
 ControlDataMotor_t prevControlData = controlData;
@@ -15,7 +14,6 @@ StepperConfiguration_t configData;
 
 AsyncWebServer webserver(80);
 
-#ifdef ENABLE_DNS
 DNSServer dnsServer;
 class CaptiveRequestHandler : public AsyncWebHandler
 {
@@ -34,7 +32,6 @@ public:
         request->send(response);
     }
 };
-#endif
 
 callback_t_config _saveConfigCallback;
 callback_t_cmd _commandCallback;
@@ -60,25 +57,21 @@ void loadSavedData() {
 }
 void startWebserver(ControlDataMotor_t *config, callback_t_config saveConfigCallback, callback_t_cmd commandCallback)
 {
-    loadSavedData();
-    _saveConfigCallback = saveConfigCallback;
-    _commandCallback = commandCallback;
+    // loadSavedData();
+    // _saveConfigCallback = saveConfigCallback;
+    // _commandCallback = commandCallback;
     SerialPrintDebug(true, "Starting Webserver on port 80");
     registerRestApiUrls(&webserver);
     registerWebInterfaceUrls(&webserver);
     SerialPrintDebug(true, "Service Endpoints registered");
-#ifdef ENABLE_DNS
     dnsServer.start(53, "*", WiFi.softAPIP());  // Port 53: DNS
     webserver.addHandler(new CaptiveRequestHandler()).setFilter(ON_AP_FILTER);
-#endif
     webserver.begin();
 }
 
 void handleTasks()
 {
-#ifdef ENABLE_DNS
     dnsServer.processNextRequest();
-#endif
 }
 
 void registerRestApiUrls(AsyncWebServer *server)
@@ -87,11 +80,11 @@ void registerRestApiUrls(AsyncWebServer *server)
               {
     if(request->hasParam("speed", true)){
         controlData.isStart = 1;
-        AsyncWebParameter* pSpeed = request->getParam("speed", true);
+        const AsyncWebParameter* pSpeed = request->getParam("speed", true);
         controlData.iSpeed = pSpeed->value().toInt();
-        AsyncWebParameter* pSensitivity = request->getParam("sensitivity", true);
+        const AsyncWebParameter* pSensitivity = request->getParam("sensitivity", true);
         controlData.iSensitivity = pSensitivity->value().toInt();
-        AsyncWebParameter* pDurationInSec = request->getParam("durationInSec", true);
+        const AsyncWebParameter* pDurationInSec = request->getParam("durationInSec", true);
         controlData.iDurationInMin = pDurationInSec->value().toInt();
         _commandCallback("speed", controlData);
      }
@@ -101,19 +94,19 @@ void registerRestApiUrls(AsyncWebServer *server)
               {
     if(request->hasParam("speed", true)){
         controlData.isStart = 1;
-        AsyncWebParameter* pSpeed = request->getParam("speed", true);
+        const AsyncWebParameter* pSpeed = request->getParam("speed", true);
         controlData.iSpeed = pSpeed->value().toInt();
 
-        AsyncWebParameter* pSensitivity = request->getParam("sensitivity", true);
+        const AsyncWebParameter* pSensitivity = request->getParam("sensitivity", true);
         controlData.iSensitivity = pSensitivity->value().toInt();
 
-        AsyncWebParameter* pDurationInSec = request->getParam("durationInSec", true);
+        const AsyncWebParameter* pDurationInSec = request->getParam("durationInSec", true);
         controlData.iDurationInMin = pDurationInSec->value().toInt();
 
-        AsyncWebParameter* pAutoTimeInSec = request->getParam("autoTimeInSec", true);
+        const AsyncWebParameter* pAutoTimeInSec = request->getParam("autoTimeInSec", true);
         controlData.iDuration2InMin = pAutoTimeInSec->value().toInt();
 
-        AsyncWebParameter* pAutoSpeed = request->getParam("autoSpeed", true);
+        const AsyncWebParameter* pAutoSpeed = request->getParam("autoSpeed", true);
         controlData.iAutoSpeed = pAutoSpeed->value().toInt();
 
         SerialPrintDebug(true, "HTTP POST /start: Received - speed: " + String(controlData.iSpeed) +
@@ -134,49 +127,49 @@ void registerRestApiUrls(AsyncWebServer *server)
         configData = _defaultConfig;
         SerialPrintDebug(true, "HTTP POST /downloadToDriver - Reset setting to default");
     } else if (request->hasParam("percentToSpeedRatio", true)) {
-        AsyncWebParameter* pPercent2Speed = request->getParam("percentToSpeedRatio", true);
+        const AsyncWebParameter* pPercent2Speed = request->getParam("percentToSpeedRatio", true);
         configData.percentToSpeedRatio = pPercent2Speed->value().toInt();
 
-        AsyncWebParameter* pMicroStep = request->getParam("microStep", true);
+        const AsyncWebParameter* pMicroStep = request->getParam("microStep", true);
         configData.microStep = pMicroStep->value().toInt();
         
-        AsyncWebParameter* pRmsCurrent = request->getParam("rmsCurrent", true);
+        const AsyncWebParameter* pRmsCurrent = request->getParam("rmsCurrent", true);
         configData.rmsCurrent = pRmsCurrent->value().toInt();
 
-        AsyncWebParameter* pAcceleration = request->getParam("acceleration", true);
+        const AsyncWebParameter* pAcceleration = request->getParam("acceleration", true);
         configData.acceleration = pAcceleration->value().toInt();
 
-        AsyncWebParameter* pBlowerVolt = request->getParam("blowerVolt", true);
+        const AsyncWebParameter* pBlowerVolt = request->getParam("blowerVolt", true);
         configData.blowerVolt = pBlowerVolt->value().toInt();
 
-        AsyncWebParameter* pThermalEnable = request->getParam("thermalEnable", true);
+        const AsyncWebParameter* pThermalEnable = request->getParam("thermalEnable", true);
         configData.thermalEnable = pThermalEnable->value().toInt();
 
-        AsyncWebParameter* pStallTime = request->getParam("stallTime", true);
+        const AsyncWebParameter* pStallTime = request->getParam("stallTime", true);
         configData.stallTime = pStallTime->value().toInt();
 
-        AsyncWebParameter* pGThreshold = request->getParam("gThreshold", true);
+        const AsyncWebParameter* pGThreshold = request->getParam("gThreshold", true);
         configData.gThreshold = pGThreshold->value().toInt();
 
-        AsyncWebParameter* pMpuIdleTime = request->getParam("mpuIdleTime", true);
+        const AsyncWebParameter* pMpuIdleTime = request->getParam("mpuIdleTime", true);
         configData.mpuIdleTime = pMpuIdleTime->value().toInt();
 
-        AsyncWebParameter* pOverHeatTime = request->getParam("overHeatTime", true);
+        const AsyncWebParameter* pOverHeatTime = request->getParam("overHeatTime", true);
         configData.overHeatTime = pOverHeatTime->value().toInt();
 
-        AsyncWebParameter* pDebugLevel = request->getParam("debugLevel", true);
+        const AsyncWebParameter* pDebugLevel = request->getParam("debugLevel", true);
         configData.eDebugLevel = pDebugLevel->value().toInt();
 
-        AsyncWebParameter* pSG4 = request->getParam("stallGuard4Threshold", true);
+        const AsyncWebParameter* pSG4 = request->getParam("stallGuard4Threshold", true);
         configData.stallGuard4Threshold = pSG4->value().toInt();
         // Button via speed
-        AsyncWebParameter* pButtonSpeedLow = request->getParam("buttonViaSpeed_low", true);
+        const AsyncWebParameter* pButtonSpeedLow = request->getParam("buttonViaSpeed_low", true);
         configData.speedViaButton.iSpeedLow = pButtonSpeedLow->value().toInt();
 
-        AsyncWebParameter* pButtonSpeedmed = request->getParam("buttonViaSpeed_med", true);
+        const AsyncWebParameter* pButtonSpeedmed = request->getParam("buttonViaSpeed_med", true);
         configData.speedViaButton.iSpeedMed = pButtonSpeedmed->value().toInt();
 
-        AsyncWebParameter* pButtonSpeedHigh = request->getParam("buttonViaSpeed_high", true);
+        const AsyncWebParameter* pButtonSpeedHigh = request->getParam("buttonViaSpeed_high", true);
         configData.speedViaButton.iSpeedHigh = pButtonSpeedHigh->value().toInt();
 
     } else {
@@ -263,7 +256,7 @@ void registerRestApiUrls(AsyncWebServer *server)
     {
         SerialPrintDebug(true, "Client REQ - response get-chart-data");
         if (request->hasParam("date", true)) {
-            AsyncWebParameter* pDate = request->getParam("date", true);
+            const AsyncWebParameter* pDate = request->getParam("date", true);
             String _requestDate = pDate->value();
             SerialPrintDebug(true, "Receive request on date: " + _requestDate);
         }
@@ -393,11 +386,11 @@ void registerWebInterfaceUrls(AsyncWebServer *server)
 }
 
 void startSPIFFS() {
-// mount ESP32 file system
-    if (!SPIFFS.begin())
-    {
+    // mount ESP32 file system
+    if (SPIFFS.begin()) {
+        SerialPrintDebug(true, "SPIFFS is mounted successfully");
+    } else {
         SerialPrintDebug(true, "An Error has occurred while mounting SPIFFS");
-        return;
     }
 }
 
